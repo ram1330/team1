@@ -5,7 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .hide {
+        display: none;
+    }
+    .filter_btn {
+        margin: 20px 0 10px;
+    }
+    .active {
+      background: #000;
+      color: #fff;
+      border: 1px solid #000;
+    }
+</style>
 <body>
-    
+    <h1>Телефонная книга</h1>
+    <h2>Добавить контакт</h2>
+    <div class="form">
+        <input class="nameInput" type="text" placeholder="Введите имя">
+        <input class="phoneInput" type="text" placeholder="Введите номер">
+        <input class="mailInput" type="email" placeholder="Введите почту">
+        <select class="filter_select">
+            <option value="not_chosen">Not chosen</option>
+            <option value="family">Family</option>
+            <option value="friends">Friends</option>
+            <option value="colleagues">Colleagues</option>
+        </select>
+        <button class="addBtn" type="submit">Сохранить</button>
+    </div>
+
+    <h2>Контакты</h2>
+    <input type="text" class="search_input">
+    <div class="filter_btns">
+        <button class="filter_btn active" data-filter="all">All</button>
+        <button class="filter_btn" data-filter="family">Family</button>
+        <button class="filter_btn" data-filter="friends">Friends</button>
+        <button class="filter_btn" data-filter="colleagues">Colleagues</button>
+    </div>
+    <ul class="contactList"></ul>
+
+    <script src="js/scripts.js"></script>
 </body>
 </html>
