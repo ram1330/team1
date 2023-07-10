@@ -1,3 +1,6 @@
+/// Temirlan
+
+
 const form = document.querySelector(".form");
 const nameInput = document.querySelector(".nameInput");
 const phoneInput = document.querySelector(".phoneInput");
@@ -149,3 +152,74 @@ function filterContacts(status) {
         })
     }
 }
+
+
+//// Ruslan
+
+
+addBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    const newContact = {
+        name: nameInput.value,
+        phoneNum: phoneInput.value,
+        mail: mailInput.value,
+        human: select.value
+    };
+    addContact(newContact);
+    nameInput.value = "";
+    phoneInput.value = "";
+    mailInput.value = "";
+});
+
+
+document.addEventListener("click", function(e) {
+    if(e.target.classList.contains("btn_remove")) {
+        const parentLi = e.target.parentNode;
+        const currentId = parseInt(parentLi.getAttribute("data-id"));
+        removeContact(currentId);
+    }
+});
+
+
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("edit_btn")) {
+        const editForm = e.target.nextElementSibling;
+        editForm.classList.remove("hide");
+        console.log(console.log(editForm));
+    }
+});
+
+
+
+document.addEventListener("click", function (e) {
+    if (e.target.classList.contains("btn_save")) {
+        const parentLi = e.target.parentNode.parentNode;
+        const currentId = +parentLi.getAttribute("data-id");
+        const editObj = {
+            name: e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.value,
+            phoneNum: e.target.previousElementSibling.previousElementSibling.previousElementSibling.value,
+            mail:  e.target.previousElementSibling.previousElementSibling.value,
+            human: e.target.previousElementSibling.value
+        }
+        edit(editObj, currentId);
+        getContact();
+    }
+})
+
+
+searchInput.addEventListener("input", function(e) {
+    searchContacts(e.target.value);
+})
+
+
+document.addEventListener("click", function(e) {
+    if (e.target.classList.contains("filter_btn")) {
+      filterBtns.forEach(el => {
+        el.classList.remove("active");
+      })
+      e.target.classList.add("active");
+      const currentStatus = e.target.getAttribute("data-filter");
+      filterContacts(currentStatus);
+    }
+})
+
